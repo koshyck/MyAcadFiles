@@ -1,4 +1,7 @@
-                                        ;updated on 21-3-19
+                                        ;updated on 22-3-19
+
+;command SUmmary to get summary
+;command SM to get Details and Summary.
 
 (defun c:Summary()
  (defun *error* (msg) (vl-cmdf "UNDO" "b") (princ msg))
