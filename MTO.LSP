@@ -1,8 +1,5 @@
                                         ;updated on 22-3-19
 
-;command SUmmary to get summary
-;command SM to get Details and Summary.
-
 (defun c:Summary()
  (defun *error* (msg) (vl-cmdf "UNDO" "b") (princ msg))
  (vl-cmdf "UNDO" "m")
@@ -241,6 +238,32 @@
 ;_
 (defun writeSummary2csv ()
  (setq dwgpath (getvar "DWGPREFIX"))
+ (setq adfilename (strcat dwgpath "MATERIAL-TAKEOFF_Summary.csv")) ;(setq file filename )
+ (setq file (findfile adfilename))
+;;; (if(= file nil)
+;;;  	(setq file (getfiled adfilename "" "csv" 1))
+;;;  )
+;;; (if file
+;;;  (progn
+   (setq file (open adfilename "w"))
+;;;         (write-line "TAKE DETAILED" file)
+;;;         (write-line "LAYER,PROFILE,LENGTH,WT/M,GALVANIZED" file)
+;;;         (foreach item sumlst (setq strdetail (lst2222str item ",")) (write-line strdetail file))
+         (write-line "SUMMARY" file)
+         (write-line "LAYER,PROFILE,LENGTH,QTY,TOTALLENGTH,TOTALWT,GALVANIZED" file)
+         (foreach item flist (setq strdetail (lst22222str item ",")) (write-line strdetail file))
+         (close file)
+;;;  )
+;;;  (progn
+;;;;;;   (alert (strcat  adfilename "file not found"))
+;;;;;;         (print (strcat adfilename "file not found"))
+;;;;;;         (princ)
+;;;  )
+;;; )
+)
+;_
+(defun writeSummary2csvOld ()
+ (setq dwgpath (getvar "DWGPREFIX"))
  (setq adfilename (strcat dwgpath "MATERIAL-TAKEOFF.csv")) ;(setq file filename )
  (setq file (findfile adfilename))
  (if file
@@ -260,10 +283,33 @@
   )
  )
 )
+;_
+(defun write2csv ()
+ (setq dwgpath (getvar "DWGPREFIX"))
+ (setq adfilename (strcat dwgpath "MATERIAL-TAKEOFF_Details.csv")) ;(setq file filename )
+ (setq file (findfile adfilename))
+;;; (if file
+;;;  (progn
+   (setq file (open adfilename "w"))
+         (write-line "TAKEOFF DETAILS" file)
+         (write-line "LAYER,PROFILE,LENGTH,WT/M,GALVANIZED" file)
+         (foreach item sumlst (setq strdetail (lst2222str item ",")) (write-line strdetail file))
+         (write-line "SUMMARY" file)
+         (write-line "LAYER,PROFILE,LENGTH,QTY,TOTALLENGTH,TOTALWT,GALVANIZED" file)
+         (foreach item flist (setq strdetail (lst22222str item ",")) (write-line strdetail file))
+         (close file)
+;;;  )
+;;;  (progn
+;;;;;;   (alert (strcat  adfilename "file not found"))
+;;;         (print (strcat adfilename "file not found"))
+;;;         (princ)
+;;;  )
+;;; )
+)
 
 
  ;_
-(defun write2csv ()
+(defun write2csvold ()
  (setq dwgpath (getvar "DWGPREFIX"))
  (setq adfilename (strcat dwgpath "MATERIAL-TAKEOFF.csv")) ;(setq file filename )
  (setq file (findfile adfilename))
