@@ -472,6 +472,9 @@
  (setvar "cmdecho" 0)
 ;;; (setq tot_len 0)
  (vl-load-com)
+ (chkpwd)
+ (if pwd
+  (progn
  (setq smbool nil)
  (prompt "\nSelect all objects to count: ")
  (setq ss (ssget))
@@ -542,6 +545,8 @@
  (setvar "cmdecho" 1)
  (print "Success")
  (princ)
+ )
+  )
 )
  ;_
 (defun RoundUp (n)
