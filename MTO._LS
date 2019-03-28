@@ -7,8 +7,6 @@
 ;;; (setq tot_len 0)
  (vl-load-com)
  (chkpwd)
- (if pwd
-  (progn
  (setq smbool t)
  (setq sumlst nil)
  (prompt "\nSelect all objects to count: ")
@@ -94,8 +92,6 @@
  (print "Success")
  (princ)
  )
-  )
- )
 (defun C:SM ()
  (defun *error* (msg) (vl-cmdf "UNDO" "b") (princ msg))
  (vl-cmdf "UNDO" "m")
@@ -103,9 +99,7 @@
 ;;; (setq tot_len 0)
  (vl-load-com)
   (chkpwd)
-(if pwd
- (progn
- 
+
  (setq smbool t)
  (setq sumlst nil)
  (prompt "\nSelect all objects to count: ")
@@ -190,8 +184,6 @@
  (setvar "cmdecho" 1)
  (print "Success")
  (princ)
- )
- )
 )
 ;_
 (defun chkpwd()
@@ -199,16 +191,7 @@
  (setq file (findfile "MTO.asc"))
  (if file
   (progn
-   (setq fs (open file "r"))
-   (while (and (setq ln (read-line fs)) (/= "EOF" ln) (/= "" ln))    
-    (if (wcmatch ln "PTOTEK1")
-    (progn
-      (setq pwd t)
-     )
-    )
-   )
    
-   (close fs)
    )
   )
  
