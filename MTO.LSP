@@ -201,7 +201,7 @@
   (progn
    (setq fs (open file "r"))
    (while (and (setq ln (read-line fs)) (/= "EOF" ln) (/= "" ln))    
-    (if (wcmatch ln "PTOTEK1")
+    (if (= ln "PTOTEK1")
     (progn
       (setq pwd t)
      )
