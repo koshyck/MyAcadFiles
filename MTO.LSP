@@ -81,6 +81,10 @@
          )
    )
    )
+    
+         (progn (alert (strcat "missing profile   for layer" layitem ".Update & rerun ")) (exit))
+         
+        
     )
    (setq n (- n 1))
   )
@@ -178,6 +182,10 @@
          )
    )
    )
+    
+         (progn (alert (strcat "missing profile   for layer" layitem ".Update & rerun ")) (exit))
+         
+        
     )
    (setq n (- n 1))
   )
