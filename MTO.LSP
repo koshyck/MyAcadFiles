@@ -1,4 +1,4 @@
-                                        ;updated on 28-3-19
+                                        ;updated on 29-3-19
 
 (defun c:Summary()
  (defun *error* (msg) (vl-cmdf "UNDO" "b") (princ msg))
@@ -576,7 +576,10 @@
    (setq foundbool nil)
    (if data
     (progn
+     (setq n 0) 
      (foreach item data
+      (if(/= n 0)
+       (progn
       (setq layername   (car item)
             profilename (cadr item)
             totallength (caddr item)
@@ -584,7 +587,12 @@
             col         (nth 5 item)
       )
       (setq tot_wt 0)
-      (setq wt (rtos (getWt profilename)))
+;;;      (setq wt (rtos (getWt profilename)))
+      (setq wt (getWt profilename))
+      (if (or (= wt "") (= wt nil))
+         (progn (alert (strcat "missing data  wt/m  for profile:" profilename ".Update & rerun ")) (exit))
+         (setq wt (rtos wt))
+        )
       (if (/= wt nil)
 ;;;          (setq tot_wt(* (atof wt) tot_len))
        (setq tot_wt (* (atof wt) (/ tot_len 1000)))
@@ -612,6 +620,9 @@
        )
        (setq details (cons item details))
       )
+      )
+     )
+      (setq n(+ n 1))
      )
 ;;;         (setq details (reverse detailS))
     )
