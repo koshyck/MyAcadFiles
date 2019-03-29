@@ -82,7 +82,7 @@
    )
    )
     
-         (progn (alert (strcat "missing profile   for layer" layitem ".Update & rerun ")) (exit))
+         ;(progn (alert (strcat "missing profile   for layer" layitem ".Update & rerun ")) (exit))
          
         
     )
@@ -183,7 +183,7 @@
    )
    )
     
-         (progn (alert (strcat "missing profile   for layer" layitem ".Update & rerun ")) (exit))
+;;;         (progn (alert (strcat "missing profile   for layer" layitem ".Update & rerun ")) (exit))
          
         
     )
@@ -597,10 +597,10 @@
       (setq tot_wt 0)
 ;;;      (setq wt (rtos (getWt profilename)))
       (setq wt (getWt profilename))
-      (if (or (= wt "") (= wt nil))
-         (progn (alert (strcat "missing data  wt/m  for profile:" profilename ".Update & rerun ")) (exit))
-         ;(setq wt (rtos wt))
-        )
+;;;      (if (or (= wt "") (= wt nil))
+;;;         (progn (alert (strcat "missing data  wt/m  for profile:" profilename ".Update & rerun ")) (exit))
+;;;         ;(setq wt (rtos wt))
+;;;        )
       (if (/= wt nil)
 ;;;          (setq tot_wt(* (atof wt) tot_len))
        (setq tot_wt (* (atof wt) (/ tot_len 1000)))
